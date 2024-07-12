@@ -24,7 +24,7 @@ const initialState = {
     {
       id: 2,
       cardImg: p2,
-      prodname: "pds2",
+      prodname: "pdsfgasdds2",
       price: 250,
       orders: 70,
       discount: 150,
@@ -35,7 +35,7 @@ const initialState = {
     {
       id: 3,
       cardImg: p3,
-      prodname: "pds3",
+      prodname: "pdskasdm3",
       price: 110,
       orders: 40,
       discount: 55,

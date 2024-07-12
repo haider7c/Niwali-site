@@ -33,38 +33,40 @@ const Checkout = () => {
       <div className="flex mx-20 justify-between">
         {/* Inputs Section  */}
         <div className="flex flex-col w-[450px]">
-          <div className="flex flex-col gap-2 mt-8">
-            <label htmlFor="">First Name</label>
-            <input type="text" className="p-3 bg-[#f5f5f5]" />
-          </div>
-          <div className="flex flex-col gap-2 mt-8">
-            <label htmlFor="">Street Address</label>
-            <input type="text" className="p-3 bg-[#f5f5f5]" />
-          </div>
-          <div className="flex flex-col gap-2 mt-8">
-            <label htmlFor="">Appartment, floor, etc. (optional)</label>
-            <input type="text" className="p-3 bg-[#f5f5f5]" />
-          </div>
-          <div className="flex flex-col gap-2 mt-8">
-            <label htmlFor="">Town/City</label>
-            <input type="text" className="p-3 bg-[#f5f5f5]" />
-          </div>
-          <div className="flex flex-col gap-2 mt-8">
-            <label htmlFor="">Zip Code</label>
-            <input type="text" className="p-3 bg-[#f5f5f5]" />
-          </div>
-          <div className="flex flex-col gap-2 mt-8">
-            <label htmlFor="">Phone Number</label>
-            <input type="text" className="p-3 bg-[#f5f5f5]" />
-          </div>
-          <div className="flex flex-col gap-2 mt-8 mb-6">
-            <label htmlFor="">Email Address</label>
-            <input type="text" className="p-3 bg-[#f5f5f5]" />
-          </div>
-          <div className="flex gap-3 mb-10">
-            <Checkbox />
-            <p>Save this information for faster check-out next time.</p>
-          </div>
+          <form action="">
+            <div className="flex flex-col gap-2 mt-8">
+              <label htmlFor="">First Name</label>
+              <input type="text" className="p-3 bg-[#f5f5f5]" />
+            </div>
+            <div className="flex flex-col gap-2 mt-8">
+              <label htmlFor="">Street Address</label>
+              <input type="text" className="p-3 bg-[#f5f5f5]" />
+            </div>
+            <div className="flex flex-col gap-2 mt-8">
+              <label htmlFor="">Appartment, floor, etc. (optional)</label>
+              <input type="text" className="p-3 bg-[#f5f5f5]" />
+            </div>
+            <div className="flex flex-col gap-2 mt-8">
+              <label htmlFor="">Town/City</label>
+              <input type="text" className="p-3 bg-[#f5f5f5]" />
+            </div>
+            <div className="flex flex-col gap-2 mt-8">
+              <label htmlFor="">Zip Code</label>
+              <input type="text" className="p-3 bg-[#f5f5f5]" />
+            </div>
+            <div className="flex flex-col gap-2 mt-8">
+              <label htmlFor="">Phone Number</label>
+              <input type="text" className="p-3 bg-[#f5f5f5]" />
+            </div>
+            <div className="flex flex-col gap-2 mt-8 mb-6">
+              <label htmlFor="">Email Address</label>
+              <input type="text" className="p-3 bg-[#f5f5f5]" />
+            </div>
+            <div className="flex gap-3 mb-10">
+              <Checkbox />
+              <p>Save this information for faster check-out next time.</p>
+            </div>
+          </form>
         </div>
         {/* Cart Section  */}
         <div className="w-[450px]">

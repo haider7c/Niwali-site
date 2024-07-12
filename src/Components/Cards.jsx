@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import star from "../assets/fiveStar.svg";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../redux/hooks";
+import { useSelector } from "react-redux";
 import { addToCart } from "../redux/features/cartReducer";
 import toast from "react-hot-toast";
 
 const Cards = ({ id, cardImg, prodname, price, orders, discount }) => {
   const dispatch = useAppDispatch();
+  const [added, setAdded] = useState(false);
+
   const addProductCart = () => {
     const payload = {
       id,
@@ -18,7 +21,16 @@ const Cards = ({ id, cardImg, prodname, price, orders, discount }) => {
     };
     dispatch(addToCart(payload));
     toast.success("Added To Cart Successfully");
+    setAdded(true);
   };
+
+  const addedItems = useSelector((state) => state.Cart.addedItems);
+
+  useEffect(() => {
+    if (addedItems && addedItems.includes(id)) {
+      setAdded(true);
+    }
+  }, [addedItems, id]);
 
   return (
     <div
@@ -44,8 +56,9 @@ const Cards = ({ id, cardImg, prodname, price, orders, discount }) => {
           <button
             className="bg-green-700 py-2 px-9 rounded-md text-white font-bold"
             onClick={addProductCart}
+            disabled={added}
           >
-            Add To Cart
+            {added ? <h1>Added To Cart</h1> : <h1>Add To Cart</h1>}
           </button>
         </div>
       </div>

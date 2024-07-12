@@ -16,6 +16,7 @@ import Cart from "./Pages/Cart/Cart.jsx";
 import Blogs from "./Pages/Blogs/Blogs.jsx";
 import Category from "./Pages/Category/Category.jsx";
 import Checkout from "./Pages/Checkout/Checkout.jsx";
+import Account from "./Pages/Account/Account.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/checkout",
     element: <Checkout />,
+  },
+  {
+    path: "/account",
+    element: <Account />,
   },
 ]);
 

@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
-import { useAppSelector } from "../redux/hooks";
-import Cart from "../Pages/Cart/Cart";
 import { useSelector } from "react-redux";
 import { IoIosSearch } from "react-icons/io";
+import Usermenu from "./Usermenu";
 
 export default function Nbar() {
+  const [userMenu, setUserMenu] = useState(false);
+
   const menuItems = [
     { title: "Home", path: "/" },
     { title: "Category", path: "/category" },
@@ -72,7 +73,15 @@ export default function Nbar() {
           </div>
         </div>
         <div className="bg-[#2f8747] rounded-full p-1">
-          <FiUser className="text-white" />
+          <FiUser
+            className="text-white cursor-pointer"
+            onClick={() => setUserMenu(!userMenu)}
+          />
+          {userMenu && (
+            <div className="absolute right-0 top-10 z-50 bg-[#185c5b] p-5">
+              <Usermenu />
+            </div>
+          )}
         </div>
       </div>
     </div>
