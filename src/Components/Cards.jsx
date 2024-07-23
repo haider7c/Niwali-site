@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import star from "../assets/fiveStar.svg";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../redux/hooks";
 import { useSelector } from "react-redux";
 import { addToCart } from "../redux/features/cartReducer";
+import { LiaCartArrowDownSolid } from "react-icons/lia";
 import toast from "react-hot-toast";
 
 const Cards = ({ id, cardImg, prodname, price, orders, discount }) => {
   const dispatch = useAppDispatch();
-  const [added, setAdded] = useState(false);
+  const { cartItems } = useSelector((item) => item.Cart);
 
   const addProductCart = () => {
     const payload = {
@@ -21,25 +22,20 @@ const Cards = ({ id, cardImg, prodname, price, orders, discount }) => {
     };
     dispatch(addToCart(payload));
     toast.success("Added To Cart Successfully");
-    setAdded(true);
   };
-
-  const addedItems = useSelector((state) => state.Cart.addedItems);
-
-  useEffect(() => {
-    if (addedItems && addedItems.includes(id)) {
-      setAdded(true);
-    }
-  }, [addedItems, id]);
 
   return (
     <div
-      className="max-w-[300px] rounded-lg border shadow-md border-gray-300"
+      className=" rounded-lg border shadow-md border-gray-300 h-[20rem] md:h-[30rem] w-[10rem] md:w-[20rem] lg:h-[28rem]"
       id={id}
     >
-      <div>
+      <div className=" ">
         <Link to={`/productdet/${id}`}>
-          <img src={cardImg} alt="" className="h-[260px] w-full object-cover" />
+          <img
+            src={cardImg}
+            alt={prodname}
+            className="mx-auto w-full md:h-[18rem] h-[9rem] rounded-md"
+          />
         </Link>
       </div>
       <div className="p-3 flex flex-col gap-1">
@@ -49,16 +45,21 @@ const Cards = ({ id, cardImg, prodname, price, orders, discount }) => {
           <span className="line-through">{price}</span>
         </div>
         <div className="flex gap-3">
-          <img src={star} alt="" />
+          <img src={star} alt="Rating" />
           <span>({orders})</span>
         </div>
         <div className="flex justify-center mt-4">
           <button
-            className="bg-green-700 py-2 px-9 rounded-md text-white font-bold"
-            onClick={addProductCart}
-            disabled={added}
+            className="bg-green-700 py-2 px-2 md:px-9 rounded-md text-white font-bold"
+            onClick={() => {
+              !cartItems.find((item) => item.id === id) && addProductCart();
+            }}
           >
-            {added ? <h1>Added To Cart</h1> : <h1>Add To Cart</h1>}
+            {cartItems.find((item) => item.id === id) ? (
+              <LiaCartArrowDownSolid size={30} />
+            ) : (
+              <h1>Add To Cart</h1>
+            )}
           </button>
         </div>
       </div>

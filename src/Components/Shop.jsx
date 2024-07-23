@@ -4,18 +4,18 @@ import { useSelector } from "react-redux";
 
 const Shop = () => {
   const { products } = useSelector((state) => state.Products);
+
   return (
-    <div className="flex flex-wrap justify-center gap-5 py-8">
+    <div className="flex flex-wrap justify-center gap-5 my-6 sm:w-1/3 lg:w-full">
       {products?.slice(0, 4).map((item) => (
-        <div className="md:2/4 lg:1/4 ">
+        <div key={item.id}>
           <Cards
-            key={item.id}
             id={item.id}
-            cardImg={item.cardImg}
+            cardImg={item.image_url + item.prod_image}
             prodname={item.prodname}
-            price={item.price}
-            orders={item.orders}
-            discount={item.discount}
+            price={(Number(item.rate) + 10).toFixed(2)}
+            orders={item.purchase_rate}
+            discount={item.rate}
           />
         </div>
       ))}

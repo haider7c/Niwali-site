@@ -1,91 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import Nbar from "../../Components/Nbar";
 import Footer from "../../Components/Footer/Footer";
+import Accountform from "../../Components/Accountform";
+import Accountaddress from "../../Components/Accountaddress";
+import Accountpayment from "../../Components/Accountpayment";
+import Accountorders from "../../Components/Accountorders";
 
 const Account = () => {
+  const [currentScreen, setCurrentScreen] = useState(0);
   return (
-    <div>
+    <div className="mt-16">
       <Nbar />
-      <div className="flex my-20 ml-20 justify-center gap-40">
-        {/* Left Side  */}
+      <div className="flex justify-between mx-16 mt-4">
         <div>
-          <div className="mb-5 mt-20">
-            <h1 className="font-semibold">Manage My Account</h1>
-            <ul>
-              <li>My Profile</li>
-              <li>Address Book</li>
-              <li>My Payment Options</li>
-            </ul>
-          </div>
-          <div>
-            <h1 className="font-semibold">My Orders</h1>
-            <ul>
-              <li>My Returns</li>
-              <li>My Cancellations</li>
-            </ul>
-          </div>
+          <span>Home</span>/<span>My Account</span>
         </div>
-        {/* Right Side  */}
-        <div className="mt-20 mr-20">
-          <h1 className="font-semibold left-0">Edit Your Profile</h1>
-          <form action="">
-            <div className="flex justify-between gap-5">
-              <div className="flex flex-col">
-                <label htmlFor="" className="font-semibold">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="MD"
-                  className="p-3 bg-[#f5f5f5]"
-                />
-                <label htmlFor="" className="font-semibold">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  placeholder="MD"
-                  className="p-3 bg-[#f5f5f5]"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="" className="font-semibold">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Rimel"
-                  className="p-3 bg-[#f5f5f5]"
-                />
-                <label htmlFor="" className="font-semibold">
-                  Address
-                </label>
-                <input
-                  type="text"
-                  placeholder="chak #123 fsd"
-                  className="p-3 bg-[#f5f5f5]"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col gap-5">
-              <h1 className="font-semibold">Password Changes</h1>
-              <input
-                type="text"
-                placeholder="chak #123 fsd"
-                className="p-3 bg-[#f5f5f5]"
-              />
-              <input
-                type="text"
-                placeholder="chak #123 fsd"
-                className="p-3 bg-[#f5f5f5]"
-              />
-              <input
-                type="text"
-                placeholder="chak #123 fsd"
-                className="p-3 bg-[#f5f5f5]"
-              />
-            </div>
-          </form>
+        <div>
+          <span>Home</span>/<span>My Account</span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 my-16 mx-16">
+        <div className="lg:col-span-3">
+          <nav>
+            <h1 className="font-semibold">Manage My Account</h1>
+            <ul className="ml-5 my-3">
+              <li className="my-2">
+                <button
+                  href="#"
+                  className=" hover:underline"
+                  onClick={() => setCurrentScreen(0)}
+                >
+                  My Profile
+                </button>
+              </li>
+              <li className="my-2">
+                <button
+                  href="#"
+                  className="text-gray-700 hover:underline"
+                  onClick={() => setCurrentScreen(1)}
+                >
+                  Address Book
+                </button>
+              </li>
+              <li className="my-2">
+                <button
+                  href="#"
+                  className="text-gray-700 hover:underline"
+                  onClick={() => setCurrentScreen(2)}
+                >
+                  My Payment Options
+                </button>
+              </li>
+            </ul>
+            <h1 className="font-semibold">My Orders</h1>
+            <ul className="ml-5 my-3">
+              <li className="my-2">
+                <button
+                  href="#"
+                  className="text-gray-700 hover:underline"
+                  onClick={() => setCurrentScreen(3)}
+                >
+                  My Orders
+                </button>
+              </li>
+              <li className="my-2">
+                <button
+                  href="#"
+                  className="text-gray-700 hover:underline"
+                  onClick={() => setCurrentScreen(4)}
+                >
+                  My Cancellations
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div className="lg:col-span-9 bg-white p-8 rounded-lg shadow-lg">
+          {/* <Accountform /> */}
+          {currentScreen === 0 ? (
+            <Accountform />
+          ) : currentScreen === 1 ? (
+            <Accountaddress />
+          ) : currentScreen === 2 ? (
+            <Accountpayment />
+          ) : (
+            <Accountorders />
+          )}
         </div>
       </div>
       <Footer />

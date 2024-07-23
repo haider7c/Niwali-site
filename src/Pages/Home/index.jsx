@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React from "react";
 import Nbar from "../../Components/Nbar";
 import Footer from "../../Components/Footer/Footer";
 import Slider from "../../Components/Slider";
@@ -16,25 +16,26 @@ import ProductSlider from "../../Components/ProductSlider.jsx";
 import FramSlider from "../../Components/FramSlider.jsx";
 import Shop from "../../Components/Shop.jsx";
 import Topproducts from "../../Components/Topproducts.jsx";
-// import Cart from "../../Components/Cart.jsx";
 import { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "../../redux/features/productSlice.js";
 
 export default function Index() {
-  const [showCart, setShowCart] = useState(false);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
   return (
-    <div className="bg-pagescolor ">
-      <Nbar setShowCart={setShowCart} />
-      {/* {showCart && <Cart setShowCart={setShowCart} />} */}
-      <div>
+    <div className="bg-pagescolor w-full overflow-hidden ">
+      <Nbar />
+      <div className="w-full">
         <Slider />
       </div>
-      <div className="flex items-center gap-1 ml-20">
+      <div className="flex items-center gap-1 ml-4 sm:ml-20">
         <div className="bg-[#0A8746] h-[25px] w-[15px] rounded-l-full"></div>
         <h1 className="text-3xl font-bold">Flash Sales - 25% OFF</h1>
       </div>
-      <section>
-        <Shop />
-      </section>
+      <Shop />
       <div className="mb-5 flex justify-center">
         <Buton
           title="View All Products"
@@ -43,23 +44,31 @@ export default function Index() {
         />
       </div>
       <hr className="mb-6" />
-      <div className="flex items-center gap-1 ml-20 my-10">
+      <div className="flex items-center gap-1 ml-4 sm:ml-20 my-10">
         <div className="bg-[#0A8746] h-[25px] w-[15px] rounded-l-full"></div>
         <h1 className="text-3xl font-bold">Browse By Category</h1>
       </div>
-      <div className="flex justify-center gap-10">
+      <div className="flex justify-center gap-10 flex-wrap">
         <Link>
-          <img src={catall} alt="" />
+          <img src={catall} alt="All Categories" className="w-full sm:w-auto" />
         </Link>
         <Link>
-          <img src={catmen} alt="" />
+          <img
+            src={catmen}
+            alt="Men's Categories"
+            className="w-full sm:w-auto"
+          />
         </Link>
         <Link>
-          <img src={catwomen} alt="" />
+          <img
+            src={catwomen}
+            alt="Women's Categories"
+            className="w-full sm:w-auto"
+          />
         </Link>
       </div>
       <hr className="mb-6 mt-4" />
-      <div className="flex items-center gap-1 ml-20 my-10">
+      <div className="flex items-center gap-1 ml-4 sm:ml-20 my-10">
         <div className="bg-[#0A8746] h-[25px] w-[15px] rounded-l-full"></div>
         <h1 className="text-3xl font-bold">Best Selling Products</h1>
       </div>
@@ -67,7 +76,7 @@ export default function Index() {
         <Topproducts />
       </section>
       <section className="flex justify-center">
-        <img src={b1} alt="" />
+        <img src={b1} alt="Banner" />
       </section>
       <ProductSlider />
       <div className="mb-5 flex justify-center">
@@ -78,10 +87,10 @@ export default function Index() {
         />
       </div>
       <section className="flex justify-center">
-        <img src={b1} alt="" />
+        <img src={b1} alt="Banner" />
       </section>
       <FramSlider />
-      <div className="flex justify-center gap-10 my-10">
+      <div className="flex justify-center gap-10 flex-wrap my-10">
         <Servisec
           icon={spv1}
           heading="FREE AND FAST DELIVERY"
@@ -99,7 +108,7 @@ export default function Index() {
         />
       </div>
       <Footer />
-      <Toaster position="Bottom-center" reverseOrder={false} />
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 }

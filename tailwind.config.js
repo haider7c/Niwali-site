@@ -19,6 +19,9 @@ export default {
   plugins: [
     function ({ addUtilities }) {
       const newUtilities = {
+        ".thead-rounded": {
+          "border-radius": "0.75rem", // Equivalent to rounded-lg
+        },
         ".placeholder-p-4::placeholder": {
           "padding-left": "1rem",
         },

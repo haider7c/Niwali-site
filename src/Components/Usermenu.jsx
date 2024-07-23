@@ -23,7 +23,7 @@ const Usermenu = () => {
     },
   ];
   return (
-    <div className="">
+    <div className="w-[12rem]">
       {menuItems.map((item) => (
         <div>
           <div className="flex gap-2 items-center">

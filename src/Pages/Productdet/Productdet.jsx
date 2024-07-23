@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/hooks";
 import { addToCart } from "../../redux/features/cartReducer";
+import { LiaCartArrowDownSolid } from "react-icons/lia";
 import { Toaster } from "react-hot-toast";
 
 import toast from "react-hot-toast";
@@ -15,6 +16,7 @@ const Productdet = () => {
   const [count, setCount] = useState(1);
   const { productId } = useParams();
   const { products } = useSelector((state) => state.Products);
+  const { cartItems } = useSelector((state) => state.Cart);
 
   const findProduct = products.find((product) => product.id == productId);
 
@@ -44,25 +46,25 @@ const Productdet = () => {
         {/* Section 1 */}
         <div className="flex flex-col w-[400px] h-[500px] bg-cardbg shadow-lg justify-center items-center border">
           <img
-            src={findProduct.cardImg}
+            src={findProduct?.image_url + findProduct?.prod_image}
             alt=""
             className="w-[200px] h-[300px] rounded-md"
           />
         </div>
         {/* Section 2 */}
         <div className="flex flex-col w-[400px] h-[500px]">
-          <h1 className="text-xl font-bold">{findProduct.prodname}</h1>
+          {/* <h1 className="text-xl font-bold">{findProduct.prodname}</h1> */}
           <div className="flex gap-2 items-center">
             <img src={fourstar} alt="" />
-            <h3 className="text-gray-500">({findProduct.orders} Reviews) | </h3>
+            {/* <h3 className="text-gray-500">({findProduct.orders} Reviews) | </h3> */}
             <h3 className="text-green-700 text-xl">In stock</h3>
           </div>
-          <h1 className="text-3xl py-2">${findProduct.discount}</h1>
-          <p>{findProduct.description}</p>
+          <h1 className="text-3xl py-2">${findProduct.rate}</h1>
+          <p>{findProduct.short_name}</p>
           <hr className="my-5" />
           <div className="flex justify-between text-xl">
             <h1 className="font-bold">SubTotal</h1>
-            <h1 className="font-semibold">${findProduct.discount * count}</h1>
+            <h1 className="font-semibold">${findProduct.rate * count}</h1>
           </div>
 
           <div className="flex items-center justify-start gap-10">
@@ -83,10 +85,17 @@ const Productdet = () => {
             </div>
             <div>
               <button
-                className="h-[40px] w-[150px] border text-white bg-green-800 rounded-md"
-                onClick={addProductCart}
+                className={` border text-white bg-green-800 rounded-md px-4 py-2 `}
+                onClick={() => {
+                  !cartItems.find((item) => item.id == productId) &&
+                    addProductCart();
+                }}
               >
-                Add Cart
+                {cartItems.find((item) => item.id == productId) ? (
+                  <LiaCartArrowDownSolid size={30} />
+                ) : (
+                  "Add to Cart"
+                )}
               </button>
             </div>
           </div>
@@ -94,7 +103,7 @@ const Productdet = () => {
             Order Via Whatsapp{" "}
           </button>
           {/* Last part of 2nd section main div */}
-          <div className="h-[200px] w-[300px] border flex gap-7 p-2 mt-5 shadow-dm">
+          <div className="h-[100px] w-[300px] border flex gap-7 p-2 mt-5 shadow-dm">
             <img src={deli1} alt="" />
             <div>
               <h1 className="">Free Delivery</h1>

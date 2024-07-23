@@ -35,7 +35,7 @@ const Cart = () => {
         <div className="flex justify-between gap-20 my-10 ">
           <div className="flex justify-center">
             <div className="w-[800px] bg-white">
-              <div className="flex flex-row py-2 px-5 border justify-between shadow-2xl rounded-md">
+              <div className="flex flex-row py-2 px-5 border justify-between shadow-md rounded-md">
                 <h1 className="font-semibold">Product</h1>
                 <h1 className="font-semibold">Price</h1>
                 <h1 className="font-semibold">Quantity</h1>

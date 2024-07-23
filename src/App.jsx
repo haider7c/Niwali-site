@@ -1,12 +1,5 @@
-import React from 'react'
-import Nbar from './Components/Nbar'
-import { Provider } from 'react-redux'
+import React from "react";
+
 export default function App() {
-
-
-  return (
-    <div>
-      
-    </div>
-  )
+  return <div></div>;
 }

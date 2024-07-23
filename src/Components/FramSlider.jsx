@@ -21,7 +21,8 @@ function FramSlider() {
   return (
     <div>
       <div className="mt-4 flex justify-between px-20 py-5">
-        <div>
+        <div className="flex items-center gap-1">
+          <div className="bg-[#0A8746] h-[25px] w-[15px] rounded-l-full"></div>
           <h1 className="text-3xl font-bold">Latest</h1>
         </div>
         <div className="flex gap-2">
@@ -39,14 +40,12 @@ function FramSlider() {
           </button>
         </div>
       </div>
-      <div className="flex flex-col items-center">
-        <div className="grid grid-cols-4 gap-4">
-          {product
-            .slice(currentIndex, currentIndex + itemsPerPage)
-            .map((item) => (
-              <FramSlidStr key={item.id} frame={item} />
-            ))}
-        </div>
+      <div className="flex flex-wrap justify-center gap-5">
+        {product
+          .slice(currentIndex, currentIndex + itemsPerPage)
+          .map((item) => (
+            <FramSlidStr key={item.id} frame={item} />
+          ))}
       </div>
     </div>
   );

@@ -6,26 +6,26 @@ import Cards from "./Cards";
 function ProductSlider() {
   const products = useSelector((state) => state.Products.products);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 4;
+  const productsPerPage = 4;
 
   const handleNext = () => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex + itemsPerPage) % products.length
+      (prevIndex) => (prevIndex + productsPerPage) % products.length
     );
   };
 
   const handlePrevious = () => {
     setCurrentIndex(
       (prevIndex) =>
-        (prevIndex - itemsPerPage + products.length) % products.length
+        (prevIndex - productsPerPage + products.length) % products.length
     );
   };
 
   return (
     <div>
-      <div className="mt-4 flex justify-between px-20 py-5">
+      <div className=" flex justify-between my-5">
         <div>
-          <div className="flex items-center gap-1">
+          <div className="flex products-center gap-1">
             <div className="bg-[#0A8746] h-[25px] w-[15px] rounded-l-full"></div>
             <h1 className="text-3xl font-bold">Explore Our Products</h1>
           </div>
@@ -45,22 +45,19 @@ function ProductSlider() {
           </button>
         </div>
       </div>
-      <div className="flex flex-col items-center">
-        <div className="grid grid-cols-4 gap-4">
-          {products
-            .slice(currentIndex, currentIndex + itemsPerPage)
-            .map((product) => (
-              <Cards
-                key={product.id}
-                id={product.id}
-                cardImg={product.cardImg}
-                prodname={product.prodname}
-                price={product.price}
-                orders={product.orders}
-                discount={product.discount}
-              />
-            ))}
-        </div>
+      <div className="flex flex-wrap justify-center gap-5 my-6 sm:w-1/3 lg:w-full">
+        {products
+          .slice(currentIndex, currentIndex + productsPerPage)
+          .map((product) => (
+            <Cards
+              id={product.id}
+              cardImg={product.image_url + product.prod_image}
+              prodname={product.prodname}
+              price={(Number(product.rate) + 10).toFixed(2)}
+              orders={product.purchase_rate}
+              discount={product.rate}
+            />
+          ))}
       </div>
     </div>
   );

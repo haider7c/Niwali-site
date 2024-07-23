@@ -11,13 +11,12 @@ const Topproducts = () => {
       {item.slice(0, 4).map((item) => (
         <div className="md:2/4 lg:1/4 ">
           <Cards
-            key={item.id}
             id={item.id}
-            cardImg={item.cardImg}
+            cardImg={item.image_url + item.prod_image}
             prodname={item.prodname}
-            price={item.price}
-            orders={item.orders}
-            discount={item.discount}
+            price={(Number(item.rate) + 10).toFixed(2)}
+            orders={item.purchase_rate}
+            discount={item.rate}
           />
         </div>
       ))}

@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItems: [],
-  addedItems: [], // New state to track added items
 };
 
 export const cartItemSlice = createSlice({
@@ -17,15 +16,11 @@ export const cartItemSlice = createSlice({
         item.quantity += 1;
       } else {
         state.cartItems.push(action.payload);
-        state.addedItems.push(action.payload.id); // Add item ID to addedItems
       }
     },
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(
         (item) => item.id !== action.payload.id
-      );
-      state.addedItems = state.addedItems.filter(
-        (id) => id !== action.payload.id
       );
     },
     incrementQuantity: (state, action) => {
